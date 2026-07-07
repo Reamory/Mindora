@@ -339,3 +339,55 @@ Location: `~/.pi/agent/sessions/<encoded-cwd>/<timestamp>_<uuid>.jsonl`
 --accent --user-bg --tool-bg
 --font-mono
 ```
+
+---
+
+## Stable Snapshots
+
+This project is git-tracked starting at v0.7.8. Tags mark known-good
+states. **Always check this section before starting work** — if the user
+references a snapshot by name, recover from the tag before making changes.
+
+### `v0.7.8-stable` — initial snapshot
+
+**Tag**: `v0.7.8-stable` (annotated)
+**Commit**: see `git log -1 v0.7.8-stable`
+**Date**: 2026-07-07
+**Why it's stable**: user confirmed this is a known-good version, treat
+as the recovery target if future changes regress.
+
+**Key changes vs. untracked baseline (everything before this repo existed):**
+- i18n: full `en` + `zh-CN` translations via `useLocale()` and
+  `lib/i18n/dictionary.ts`. See `### i18n / useLocale` above.
+- Sandbox EPERM workaround: dev server can't write to `~/.pi/agent/` from
+  inside TRAE/sandboxed IDE. See `## Critical Sandbox Traps` above.
+  - `npm run dev:workspace` sets `PI_CODING_AGENT_DIR=./.pi/agent`
+  - `scripts/dev-with-agent.mjs` is the wrapper
+  - `/api/auth/api-key/[provider]` reads/writes `auth.json` directly
+    (3-strategy write fallback) instead of using `AuthStorage.set()`,
+    because AuthStorage silently no-ops writes after a loadError
+  - `/api/auth/all-providers` uses `AuthStorage.inMemory()` and overrides
+    `configured` from a direct `auth.json` read
+  - `/api/models-config` has the same 3-strategy write fallback
+- Settings panel closure bugs fixed: `addCustomProvider` and `addModel`
+  now return the new name/index, callers select synchronously. See
+  `### Settings panel: closure traps and visual feedback` above.
+- Top-bar dark-mode toggle button removed from `AppShell.tsx`. Theme
+  state is still readable in the Settings panel; no other UI surfaces
+  change.
+
+**Recover this version:**
+
+```bash
+cd "d:\AI PROJECT\Claudecode\x3\pi-web-main"
+git checkout v0.7.8-stable    # detached HEAD
+# To make it the live branch again:
+git checkout main && git reset --hard v0.7.8-stable
+```
+
+**Inspect what's in it:**
+
+```bash
+git show v0.7.8-stable --stat
+git diff v0.7.8-stable..HEAD  # see what has changed since
+```
