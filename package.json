@@ -1,18 +1,19 @@
 {
-  "name": "@agegr/pi-web",
-  "version": "0.7.8",
-  "description": "Web UI for the pi coding agent",
-  "homepage": "https://github.com/agegr/pi-web#readme",
+  "name": "mindora",
+  "version": "0.1.1",
+  "description": "Mindora — a focused, local-first workspace for the pi coding agent",
+  "homepage": "https://github.com/Reamory/Mindora#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/agegr/pi-web.git"
+    "url": "git+https://github.com/Reamory/Mindora.git"
   },
   "bugs": {
-    "url": "https://github.com/agegr/pi-web/issues"
+    "url": "https://github.com/Reamory/Mindora/issues"
   },
+  "author": "Remory",
   "license": "MIT",
   "bin": {
-    "pi-web": "bin/pi-web.js"
+    "mindora": "bin/mindora.js"
   },
   "files": [
     "bin",

@@ -513,8 +513,8 @@ export function AppShell() {
               <button
                 onClick={handleExportSession}
                 disabled={!selectedSession}
-                title={selectedSession ? "Export HTML" : "Export is available after the session is saved"}
-                aria-label="Export HTML"
+                title={selectedSession ? t("topbar.export.title") : t("topbar.export.title_disabled")}
+                aria-label={t("topbar.export.title")}
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -560,7 +560,7 @@ export function AppShell() {
                     <line x1="12" y1="15" x2="12" y2="3" />
                   </svg>
                 </span>
-                {!isMobile && <span>Export</span>}
+                {!isMobile && <span>{t("chat.export.label")}</span>}
               </button>
               <BranchNavigator
                 tree={branchTree}
@@ -576,8 +576,8 @@ export function AppShell() {
               <button
                 ref={systemBtnRef}
                 onClick={() => toggleTopPanel("system")}
-                title="System prompt"
-                aria-label="System prompt"
+                title={t("topbar.system.title")}
+                aria-label={t("topbar.system.title")}
                 aria-pressed={activeTopPanel === "system"}
                 style={{
                   display: "flex", alignItems: "center", gap: 6,
@@ -733,11 +733,11 @@ export function AppShell() {
                     </div>
                   ) : systemPrompt === "" ? (
                     <div style={{ padding: "10px 16px", fontSize: 12, color: "var(--text-muted)", fontStyle: "italic" }}>
-                      System prompt is empty (tools are disabled)
+                      {t("topbar.system.empty")}
                     </div>
                   ) : (
                     <div style={{ padding: "10px 16px", fontSize: 12, color: "var(--text-muted)", fontStyle: "italic" }}>
-                      Send a message to load the system prompt
+                      {t("topbar.system.empty_unloaded")}
                     </div>
                   )}
                 </div>

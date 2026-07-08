@@ -781,7 +781,9 @@ export function SessionSidebar({ selectedSessionId, onSelectSession, onNewSessio
                 flexShrink: 0,
                 transition: "background 0.12s, color 0.12s, border-color 0.12s",
               }}
-              title={selectedCwd ? `New session in ${selectedCwd}` : "Select a project first"}
+              title={selectedCwd
+                ? t("sidebar.new_session.title", { vars: { path: selectedCwd } })
+                : t("sidebar.new_session.disabled_title")}
               onMouseEnter={(e) => {
                 if (!selectedCwd) return;
                 e.currentTarget.style.background = "var(--bg-selected)";
@@ -795,10 +797,10 @@ export function SessionSidebar({ selectedSessionId, onSelectSession, onNewSessio
               }}
             >
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
-                <line x1="6" y1="1" x2="6" y2="11" />
-                <line x1="1" y1="6" x2="11" y2="6" />
+                <line x1="6" y1="1" x2="6" y2="11"></line>
+                <line x1="1" y1="6" x2="11" y2="6"></line>
               </svg>
-              New
+              {t("sidebar.new_session.label")}
             </button>
             <button
               onClick={() => loadSessions(false)}

@@ -239,6 +239,57 @@ export const dict: Dictionary = {
   "sidebar.rename": "重命名",
   "sidebar.delete": "删除",
   "sidebar.worktree_label": "Worktree: {path}",
+
+  // Chat input placeholder
+  "chat.input.placeholder": "消息… 输入 / 触发命令，@ 引用文件",
+  "chat.input.placeholder.steer": "立即转向 / 追加后续…",
+  "chat.input.placeholder.running": "智能体正在运行…",
+
+  // Chat input toolbar tooltips
+  "controls.reasoning_level.title": "更改推理级别：{label}",
+  "controls.reasoning_level.label": "更改推理级别",
+  "controls.tool_preset.title": "更改工具预设：{label}",
+  "controls.tool_preset.label": "更改工具预设",
+  "chat.compact.compact": "压缩上下文",
+  "chat.compact.stop": "停止压缩",
+  "chat.compact.compacting": "压缩中…",
+  "controls.sound.disable": "关闭完成提示音",
+  "controls.sound.enable": "开启完成提示音",
+
+  // Steer / Follow-up buttons (during streaming)
+  "chat.steer.label": "立即转向",
+  "chat.steer.title": "中断当前执行并立即注入此消息",
+  "chat.followup.label": "追加后续",
+  "chat.followup.title": "智能体结束后排队发送此消息",
+  "chat.queue.image_blocked": "运行中无法排队带图片附件的消息",
+
+  // Chat Send / Stop
+  "chat.send.label": "发送",
+  "chat.stop.label": "停止",
+  "chat.stop.title": "停止智能体",
+
+  // Sidebar new session
+  "sidebar.new_session.label": "新建",
+  "sidebar.new_session.title": "在 {path} 新建会话",
+  "sidebar.new_session.disabled_title": "请先选择项目",
+
+  // Branch navigator
+  "branches.label": "分支",
+  "branches.title": "分支",
+
+  // Export session
+  "chat.export.label": "导出",
+
+  // Top bar tabs
+  "topbar.system.title": "系统提示",
+  "topbar.system.empty": "系统提示为空（工具已禁用）",
+  "topbar.system.empty_unloaded": "发送消息以加载系统提示",
+  "topbar.export.title": "导出为 HTML",
+  "topbar.export.title_disabled": "会话保存后可导出",
+
+  // Branch navigator empty states
+  "branches.empty.no_session": "没有活动会话",
+  "branches.empty.no_branches": "此会话没有分支",
 };
 
 export const en: Dictionary = {
@@ -477,6 +528,57 @@ export const en: Dictionary = {
   "sidebar.rename": "Rename",
   "sidebar.delete": "Delete",
   "sidebar.worktree_label": "Worktree: {path}",
+
+  // Chat input placeholder
+  "chat.input.placeholder": "Message… Type / for commands, @ for files",
+  "chat.input.placeholder.steer": "Steer now / queue follow-up…",
+  "chat.input.placeholder.running": "Agent is running…",
+
+  // Chat input toolbar tooltips
+  "controls.reasoning_level.title": "Change reasoning level: {label}",
+  "controls.reasoning_level.label": "Change reasoning level",
+  "controls.tool_preset.title": "Change tool preset: {label}",
+  "controls.tool_preset.label": "Change tool preset",
+  "chat.compact.compact": "Compact context",
+  "chat.compact.stop": "Stop compaction",
+  "chat.compact.compacting": "Compacting…",
+  "controls.sound.disable": "Disable completion sound",
+  "controls.sound.enable": "Enable completion sound",
+
+  // Steer / Follow-up buttons (during streaming)
+  "chat.steer.label": "Steer",
+  "chat.steer.title": "Interrupt the current run and inject this message now",
+  "chat.followup.label": "Follow-up",
+  "chat.followup.title": "Queue this message after the agent finishes",
+  "chat.queue.image_blocked": "Image attachments cannot be queued while the agent is running",
+
+  // Chat Send / Stop
+  "chat.send.label": "Send",
+  "chat.stop.label": "Stop",
+  "chat.stop.title": "Stop agent",
+
+  // Sidebar new session
+  "sidebar.new_session.label": "New",
+  "sidebar.new_session.title": "New session in {path}",
+  "sidebar.new_session.disabled_title": "Select a project first",
+
+  // Branch navigator
+  "branches.label": "Branches",
+  "branches.title": "Branches",
+
+  // Export session
+  "chat.export.label": "Export",
+
+  // Top bar tabs
+  "topbar.system.title": "System prompt",
+  "topbar.system.empty": "System prompt is empty (tools are disabled)",
+  "topbar.system.empty_unloaded": "Send a message to load the system prompt",
+  "topbar.export.title": "Export HTML",
+  "topbar.export.title_disabled": "Export is available after the session is saved",
+
+  // Branch navigator empty states
+  "branches.empty.no_session": "No active session",
+  "branches.empty.no_branches": "This session has no branches",
 };
 
 export const ja: Dictionary = {
@@ -715,6 +817,57 @@ export const ja: Dictionary = {
   "sidebar.rename": "名前を変更",
   "sidebar.delete": "削除",
   "sidebar.worktree_label": "Worktree: {path}",
+
+  // Chat input placeholder
+  "chat.input.placeholder": "メッセージ… コマンドは / 、ファイルは @",
+  "chat.input.placeholder.steer": "すぐに操縦 / フォローアップを追加…",
+  "chat.input.placeholder.running": "エージェント実行中…",
+
+  // Chat input toolbar tooltips
+  "controls.reasoning_level.title": "推論レベルの変更: {label}",
+  "controls.reasoning_level.label": "推論レベルの変更",
+  "controls.tool_preset.title": "ツールプリセットの変更: {label}",
+  "controls.tool_preset.label": "ツールプリセットの変更",
+  "chat.compact.compact": "コンテキストを圧縮",
+  "chat.compact.stop": "圧縮を停止",
+  "chat.compact.compacting": "圧縮中…",
+  "controls.sound.disable": "完了音を無効化",
+  "controls.sound.enable": "完了音を有効化",
+
+  // Steer / Follow-up buttons (during streaming)
+  "chat.steer.label": "ステア",
+  "chat.steer.title": "現在の実行を中断し、このメッセージをすぐに注入します",
+  "chat.followup.label": "フォローアップ",
+  "chat.followup.title": "エージェント終了後、このメッセージをキューに追加します",
+  "chat.queue.image_blocked": "実行中は画像添付のメッセージをキューに追加できません",
+
+  // Chat Send / Stop
+  "chat.send.label": "送信",
+  "chat.stop.label": "停止",
+  "chat.stop.title": "エージェントを停止",
+
+  // Sidebar new session
+  "sidebar.new_session.label": "新規",
+  "sidebar.new_session.title": "{path} に新規セッション",
+  "sidebar.new_session.disabled_title": "先にプロジェクトを選択",
+
+  // Branch navigator
+  "branches.label": "ブランチ",
+  "branches.title": "ブランチ",
+
+  // Export session
+  "chat.export.label": "エクスポート",
+
+  // Top bar tabs
+  "topbar.system.title": "システムプロンプト",
+  "topbar.system.empty": "システムプロンプトは空です（ツールが無効）",
+  "topbar.system.empty_unloaded": "メッセージを送信してシステムプロンプトを読み込む",
+  "topbar.export.title": "HTML としてエクスポート",
+  "topbar.export.title_disabled": "セッション保存後にエクスポートできます",
+
+  // Branch navigator empty states
+  "branches.empty.no_session": "アクティブなセッションなし",
+  "branches.empty.no_branches": "このセッションには分岐がありません",
 };
 
 export const dictionaries = {

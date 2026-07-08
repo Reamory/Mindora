@@ -1,57 +1,81 @@
-# pi-web
+# Mindora
 
-[中文文档](./README.zh-CN.md)
+<img src="docs/logo.svg" alt="Mindora" width="240" />
 
-Local web UI for the [pi coding agent](https://github.com/badlogic/pi-mono). pi-web reads your local pi session files and gives you a browser workspace for session browsing, real-time chat, model configuration, skill management, and project file preview.
+> A focused, local-first workspace for the [pi coding agent](https://github.com/badlogic/pi-mono).
 
-![Pi Web shows the same pi session with structured Markdown, tool calls, and project navigation beside the CLI](https://raw.githubusercontent.com/agegr/pi-web/main/docs/screenshot2.png)
+Mindora reads your local pi session files and gives you a clean browser workspace for session browsing, real-time chat, model configuration, skill management, and project file preview — without giving up control of where your data lives.
 
-The same pi session in CLI and pi-web: structured tool calls, readable Markdown, session browsing, and cleaner results.
+[中文文档](./README.zh-CN.md) · [Changelog](./CHANGELOG.md) · [Code of Conduct](./CODE_OF_CONDUCT.md) · [Contributing](./CONTRIBUTING.md)
+
+---
+
+## Why Mindora
+
+You spend hours inside a coding agent. The CLI is fast, but you still need to:
+
+- **Find a conversation from last week** without grepping through `~/.pi/agent/sessions`.
+- **See the diff** while the agent edits a file, not after.
+- **Switch models, swap API keys, install skills** without opening three terminals.
+- **Audit cost and token usage** for a long session, on the spot.
+
+Mindora is the local web UI that makes the pi agent pleasant to drive for hours.
+
+## Highlights
+
+- **🗂 Sessions you can browse, not just files** — every pi conversation is grouped by project, with branch context, fork lines, and an in-session minimap.
+- **🪄 Try different directions safely** — continue from any earlier message, or fork a session into an independent route. Originals stay untouched.
+- **🌿 Work across Git worktrees** — the sidebar lets you swap worktrees; new sessions and the file explorer follow whichever checkout you choose.
+- **📂 Chat beside the project** — file tree on the left, source / diff / image / audio / PDF / DOCX preview on the right, live-reloading while the agent works.
+- **🧠 See the session state clearly** — context usage, cost, compaction state, and the system prompt are one click away from the top bar.
+- **⚙️ Configure less from the terminal** — manage models, OAuth/API keys, model tests, and skill switches from the web UI.
+- **🌗 Light & dark, your way** — light, dark, or follow system; switch with a circular wipe animation.
+- **🌏 3 languages out of the box** — English, 简体中文, 日本語.
+- **🛡 Stays on your machine** — no telemetry, no cloud account, no upload. The default port is `localhost` only.
 
 ## Quick Start
 
-**Run without installing:**
+**No install, just run:**
 
 ```bash
-npx @agegr/pi-web@latest
+npx mindora
 ```
 
 **Or install globally:**
 
 ```bash
-npm install -g @agegr/pi-web
-pi-web
+npm install -g mindora
+mindora
 ```
 
-Then open [http://localhost:30141](http://localhost:30141). The CLI will try to open the browser automatically after the server is ready.
+Then open <http://localhost:30141>. The CLI tries to open the browser automatically once the server is ready.
 
 **Options:**
 
 ```bash
-pi-web --port 8080              # custom port
-pi-web --hostname 127.0.0.1     # local access only
-pi-web -p 8080 -H 127.0.0.1     # combine options
+mindora --port 8080              # custom port
+mindora --hostname 127.0.0.1     # local access only
+mindora -p 8080 -H 127.0.0.1     # combine options
 
-PORT=8080 pi-web                # environment variable is also supported
+PORT=8080 mindora                # environment variable is also supported
 ```
 
-## Features
+## What you need before your first chat
 
-- **Pick work back up**: browse previous pi conversations by project without digging through terminal history or session paths.
-- **Try different directions safely**: continue from an earlier message or fork a session into a separate route.
-- **Work across branches**: switch Git worktrees from the sidebar so new sessions and the Explorer follow the checkout you choose.
-- **Chat beside the project**: browse files on the left and preview source, docs, images, audio, and PDFs on the right while the agent works.
-- **See session state clearly**: context usage, cost, compaction state, and system prompt details are visible from the top bar.
-- **Configure less from the terminal**: manage models, login/API keys, model tests, and skill switches from the web UI.
+1. **Pick a working directory** in the sidebar (or let Mindora use your OS home).
+2. **Connect a model provider** in *Settings → Models* (Claude, OpenAI, or any OpenAI/Anthropic-compatible endpoint).
+3. *(Optional)* **Install skills** in *Settings → Skills* to teach the agent your conventions.
+4. Hit **+ New** in the sidebar and start typing.
 
-## Notes
+## Configuration
 
-- **Data directory**: pi-web reads `~/.pi/agent/sessions` by default. Set `PI_CODING_AGENT_DIR` to point at another pi agent directory.
-- **Session files**: files are stored as `~/.pi/agent/sessions/<encoded-cwd>/<timestamp>_<uuid>.jsonl`.
-- **Model config**: the Models panel reads and writes `models.json` in the pi agent directory. Model lists and defaults come from pi's config.
-- **File access**: file browsing and preview are scoped to the selected project directory and working directories that appear in sessions.
-- **Git worktrees**: see [Worktrees in pi-web](./docs/worktrees.md) for when the switcher appears, how new worktrees are created, and what removal does.
-- **Forks vs in-session branches**: Fork creates a new `.jsonl` file. "Edit from here" creates another branch inside the same session file.
+| Knob | Default | Where it lives |
+|---|---|---|
+| Agent data directory | `~/.pi/agent` | `PI_CODING_AGENT_DIR` env var |
+| Default port | `30141` | `--port` / `PORT` env var |
+| Bind address | `0.0.0.0` | `--hostname` / `HOSTNAME` env var |
+| Language | follows browser | Settings → General → Language |
+| Theme | follows system | Settings → General → Theme |
 
 ## Development
 
@@ -60,7 +84,7 @@ npm install
 npm run dev
 ```
 
-The local dev server runs at [http://localhost:30141](http://localhost:30141).
+The local dev server runs at <http://localhost:30141>.
 
 Common checks:
 
@@ -99,16 +123,39 @@ components/
 lib/
   rpc-manager.ts      # AgentSessionWrapper lifecycle and global registry
   session-reader.ts   # parses .jsonl session files and branch contexts
-  normalize.ts        # normalizes toolCall field names
-  file-access.ts      # file read safety boundary
-  file-paths.ts       # path encoding and relative path helpers
-  markdown.ts         # Markdown/Mermaid/KaTeX plugin configuration
-  pi-types.ts         # pi-related types
+  tool-presets.ts     # built-in tool whitelist presets
+  i18n/dictionary.ts  # all UI strings, keyed by namespace
 hooks/
   useAgentSession.ts  # session loading, command sending, SSE state machine
-  useAudio.ts         # completion sound
-  useDragDrop.ts      # image drag/drop
-  useTheme.ts         # theme switching
+  useTheme.ts         # theme + circular wipe animation
+  useLocale.tsx       # language + i18n dictionary lookup
 bin/
-  pi-web.js           # npm CLI entrypoint
+  mindora.js          # npm CLI entrypoint
 ```
+
+## Contributing
+
+We welcome issues and pull requests — see [CONTRIBUTING.md](./CONTRIBUTING.md) for the workflow. By participating, you agree to follow the [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+## Credits
+
+Mindora is a maintained rebrand and continuation of [`@agegr/pi-web`](https://github.com/agegr/pi-web) by **agegr**, released under the MIT License. The original work, the architecture, and the upstream agent integration are theirs; Mindora adds the Mindora brand, color system, and ongoing product work on top.
+
+- **pi coding agent** — by Mario Zechner ([@badlogic](https://github.com/badlogic)) and the [pi-mono](https://github.com/badlogic/pi-mono) project.
+- **pi-web (the original)** — by [agegr](https://github.com/agegr). The codebase that Mindora is built on.
+
+## License
+
+MIT — see [LICENSE](./LICENSE).
+
+```
+MIT License
+Copyright (c) 2026 agegr
+Copyright (c) 2026 Remory (Mindora rebrand and ongoing work)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction...
+```
+
+See [LICENSE](./LICENSE) for the full text.
